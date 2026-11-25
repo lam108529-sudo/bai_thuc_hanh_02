@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct{
+    char hoten[50];
+    char ma[20];
+    float d1;
+    float d2;
+    float d3;
+} SinhVien;
+typedef struct node{
+    SinhVien data;
+    struct node *next;
+} node;
+typedef struct{
+    node *head;
+    node *tail;
+} LinkedList;
+int main(){
+    LinkedList ds;
+    ds.head=NULL;
+    ds.tail=NULL;
+    return 0;
+}
