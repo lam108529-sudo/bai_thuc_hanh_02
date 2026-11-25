@@ -1,1 +1,28 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    int x,y;
+    printf("Nhap hang va cot cua ma tran: ");
+    scanf("%d%d",&x, &y);
+    float *matran=(float*)malloc(x*y*sizeof(float));
+    if(matran==NULL){
+        printf("Khong du bo nho!");
+        return 1;
+    }
+    else{
+        for(int i=0;i<x;i++){
+            for(int j=0;j<y;j++){
+                printf("Nhap phan tu [%d][%d]: ",i,j);
+                scanf("%f",matran+i*x+j);
+            }
+        }
+        for(int i=0;i<x;i++){
+            for(int j=0;j<y;j++){
+                printf("%.2f ",*(matran+i*x+j));
+            }
+            printf("\n");
+        }
+    }
+    free(matran);
+    return 0;
+}
