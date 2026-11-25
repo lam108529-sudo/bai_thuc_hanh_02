@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef struct{
+    char hoten[50];
+    char ma[20];
+    float d1,d2,d3;
+} SinhVien;
+void nhap(SinhVien*ds,int n){
+    for(int i=0;i<n;i++){
+        printf("Nhập sinh viên thứ %d\n",i+1);
+        getchar();
+        printf("Họ tên: ");
+        fgets((ds+i)->hoten,sizeof((ds+i)->hoten), stdin);
+        (ds+i)->hoten[strcspn((ds+i)->hoten,"\n")]='\0';
+        printf("Mã sinh viên: ");
+        scanf("%s",(ds+i)->ma);
+        printf("Nhập điểm 3 môn: ");
+        scanf("%f %f %f", &(ds+i)->d1, &(ds+i)->d2, &(ds+i)->d3);
+    }
+}
+void in(SinhVien*ds,int n){
+    printf("\n%-5s %-25s %-12s %-8s %-8s %-8s\n","STT", "Ho ten", "Ma sv", "Diem 1", "Diem 2", "Diem 3"); 
+    for(int i=0;i<n;i++){
+        printf("%-5d %-25s %-12s %-8.2f %-8.2f %-8.2f\n", i+1, (ds+i)->hoten, (ds+i)->ma, (ds+i)->d1, (ds+i)->d2, (ds+i)->d3);
+    }
+}
+int main(){
+    int n;
+    printf("Nhập số sinh viên: ");
+    scanf("%d",&n);
+    SinhVien*ds=(SinhVien*)malloc(n*sizeof(SinhVien));
+    if(ds==NULL){
+        printf("Không cấp đủ bộ nhớ");
+        return 1;
+    }
+    nhap(ds,n);
+    in(ds,n);
+    free(ds);
+    return 0;
+}
+
